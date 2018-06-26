@@ -1,0 +1,23 @@
+server:
+  port: 17081
+  servlet:
+    context-path: /mongodb-api
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/springboot
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  rabbitmq:
+    host: 127.0.0.1
+    port: 32773
+
+mq:
+  application: springboot-mongodb-api
+  exchange: (AMQP default)
+  queue: api-queue
+
+logging:
+  level:
+    root: INFO
