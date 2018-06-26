@@ -15,8 +15,9 @@ spring:
 
 mq:
   application: springboot-mongodb-api
-  exchange: (AMQP default)
-  queue: api-queue
+  exchange: apis.direct
+  in-queue-name: neo4j.queue
+  out-queue-key: mongodb.key
 
 logging:
   level:

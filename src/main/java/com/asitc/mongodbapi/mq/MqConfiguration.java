@@ -16,12 +16,12 @@ public class MqConfiguration {
 	@Value("${mq.exchange}")
 	private String exchangeName;
 
-	@Value("${mq.queue}")
-	private String queueName;
+	@Value("${mq.in-queue-name}")
+	private String inQueueName;
 
 	@Bean
 	Queue queue() {
-		return new Queue(this.queueName);
+		return new Queue(this.inQueueName);
 	}
 
 	@Bean
@@ -31,7 +31,7 @@ public class MqConfiguration {
 
 	@Bean
 	Binding binding(final Queue queue, final DirectExchange exchange) {
-		return BindingBuilder.bind(queue).to(exchange).with(this.queueName);
+		return BindingBuilder.bind(queue).to(exchange).with(this.inQueueName);
 	}
 
 	@Bean

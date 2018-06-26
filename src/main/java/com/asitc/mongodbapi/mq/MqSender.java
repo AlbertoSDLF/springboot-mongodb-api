@@ -14,8 +14,8 @@ public class MqSender {
 	@Value("${mq.exchange}")
 	private String exchangeName;
 
-	@Value("${mq.queue}")
-	private String queueName;
+	@Value("${mq.out-queue-key}")
+	private String outQueueKey;
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
@@ -23,6 +23,6 @@ public class MqSender {
 	// @Scheduled(fixedDelay = 3000L)
 	public void sendMessage(final MqMessage message) {
 		message.setApplication(this.applicationName);
-		this.rabbitTemplate.convertAndSend(this.exchangeName, this.queueName, message);
+		this.rabbitTemplate.convertAndSend(this.exchangeName, this.outQueueKey, message);
 	}
 }

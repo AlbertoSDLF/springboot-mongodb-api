@@ -21,7 +21,7 @@ public class MqListener {
 	@Value("${mq.application}")
 	private String applicationName;
 
-	@RabbitListener(queues = "api-queue")
+	@RabbitListener(queues = "neo4j.queue")
 	public void receiveMessage(final MqMessage message) {
 		System.out.println(message);
 		final Iterable<Car> cars = this.carRepository.findAll();
