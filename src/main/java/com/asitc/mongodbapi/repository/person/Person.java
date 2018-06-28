@@ -1,9 +1,15 @@
 package com.asitc.mongodbapi.repository.person;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 
-public class Person {
+public class Person implements Serializable {
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
 	private String firstName;

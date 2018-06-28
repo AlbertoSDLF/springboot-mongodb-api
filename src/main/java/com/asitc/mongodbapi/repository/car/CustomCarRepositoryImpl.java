@@ -4,17 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import lombok.extern.slf4j.Slf4j;
+
+@CacheConfig(cacheNames = "cars")
+@Slf4j
 public class CustomCarRepositoryImpl implements CustomCarRepository {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@Cacheable
 	public List<Car> findByMake(final String make) {
+		log.info("findByMake:: Non-cached execution");
 		final Query query = new Query();
 		query.addCriteria(Criteria.where("make").is(make));
 		final List<Car> carList = this.mongoTemplate.find(query, Car.class);

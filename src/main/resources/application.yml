@@ -3,15 +3,30 @@ server:
   servlet:
     context-path: /mongodb-api
 
+management:
+  server:
+    port: 17082
+#    servlet:
+#      context-path: /management
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: "*"
+        
 spring:
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${random.value}
   data:
     mongodb:
-      uri: mongodb://127.0.0.1:27017/springboot
+      uri: ${MONGODB_URL}
   jackson:
     property-naming-strategy: SNAKE_CASE
   rabbitmq:
-    host: 127.0.0.1
-    port: 32773
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
 
 mq:
   application: springboot-mongodb-api
@@ -22,3 +37,4 @@ mq:
 logging:
   level:
     root: INFO
+    

@@ -1,12 +1,18 @@
 package com.asitc.mongodbapi.repository.car;
 
+import java.io.Serializable;
+
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "car")
-public class Car {
+public class Car implements Serializable {
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
 	private String make;

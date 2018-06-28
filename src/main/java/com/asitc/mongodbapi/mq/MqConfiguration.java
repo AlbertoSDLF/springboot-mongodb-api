@@ -34,6 +34,14 @@ public class MqConfiguration {
 		return BindingBuilder.bind(queue).to(exchange).with(this.inQueueName);
 	}
 
+	// @Bean
+	// List<Binding> bindings() {
+	//
+	// return
+	// Arrays.AsList(BindingBuilder.bind(queue()).to(exchange()).with(topic1),
+	// BindingBuilder.bind(queue()).to(exchange()).with(topic2));
+	// }
+
 	@Bean
 	MessageConverter messageConverter() {
 		return new Jackson2JsonMessageConverter();

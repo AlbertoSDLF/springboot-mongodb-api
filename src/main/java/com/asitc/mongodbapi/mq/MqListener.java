@@ -9,7 +9,10 @@ import com.asitc.mongodbapi.repository.car.Car;
 import com.asitc.mongodbapi.repository.car.CarRepository;
 import com.asitc.mongodbapi.repository.person.PersonRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class MqListener {
 
 	@Autowired
@@ -23,9 +26,9 @@ public class MqListener {
 
 	@RabbitListener(queues = "neo4j.queue")
 	public void receiveMessage(final MqMessage message) {
-		System.out.println(message);
+		log.info(message.toString());
 		final Iterable<Car> cars = this.carRepository.findAll();
-		System.out.println(cars.spliterator().getExactSizeIfKnown());
+		log.info(Long.toString(cars.spliterator().getExactSizeIfKnown()));
 		if (this.applicationName != message.getApplication()) {
 		}
 	}
